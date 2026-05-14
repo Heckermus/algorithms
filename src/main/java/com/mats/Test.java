@@ -1,18 +1,52 @@
 package com.mats;
 
+import com.opencsv.CSVWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 public class Test {
 
-    private final Timer timer = new Timer();
+    private Timer timer;
     private final Random random = new Random();
+    private CSVWriter writer;
 
     private int[] field;
     private int[] fieldDuplicate;
 
-    public Test(int arrayLength, int numberRange) {}
+    public Test() {
+        timer = new Timer();
+    }
 
-    public void createField(int arrayLength, int numberRange) {
+    public void bubbleSortBenchmark() throws IOException {
+        writer = new CSVWriter(new FileWriter("bubble.csv"));
+        for (int i = 10; i < 100; i++) {
+            String[] data = { String.valueOf(i) };
+            System.out.println(i);
+            for (int i0 = 10; i0 < 10000; i0 += 10) {
+                createArray(i0, i);
+                timer.start();
+                Algorithms.bubbleSort(field);
+                data = append(data, String.format("%.10f", timer.stop()));
+                if (!isFieldSorted()) break;
+            }
+            writer.writeNext(data);
+        }
+        writer.close();
+    }
+
+    public static String[] append(String[] arr, String value) {
+        String[] result = new String[arr.length + 1];
+
+        for (int i = 0; i < arr.length; i++) {
+            result[i] = arr[i];
+        }
+
+        result[arr.length] = value;
+        return result;
+    }
+
+    public void createArray(int arrayLength, int numberRange) {
         field = new int[arrayLength];
         fieldDuplicate = new int[arrayLength];
         for (int i = 0; i < field.length; i++) {
@@ -29,15 +63,6 @@ public class Test {
             if (field[i] > field[i + 1]) return false;
         }
         return true;
-    }
-
-    //info: timer methods
-    public void startTimer() {
-        timer.start();
-    }
-
-    public void stopTimer() {
-        System.out.println("Seconds passed: " + timer.stop());
     }
 
     //info: output related methods
