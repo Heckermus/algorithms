@@ -199,13 +199,13 @@ public class Test {
             writer.writeNext(prefix);
 
             //INFO: Warm up
-            for (int i = 0; i < 31; i++) {
+            for (int i = 0; i < 36; i++) {
                 System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.mergeSort(field);
             }
 
-            for (int i = 0; i < 23; i++) {
+            for (int i = 0; i < 36; i++) {
                 sum = 0;
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
@@ -289,13 +289,13 @@ public class Test {
             writer.writeNext(prefix);
 
             //INFO: Warm up
-            for (int i = 0; i < 37; i++) {
+            for (int i = 0; i < 36; i++) {
                 System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.countSort(field);
             }
 
-            for (int i = 0; i < 37; i++) {
+            for (int i = 0; i < 36; i++) {
                 sum = 0;
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
@@ -379,13 +379,13 @@ public class Test {
             writer.writeNext(prefix);
 
             //INFO: Warm up
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 29; i++) {
                 System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.heapSort(field);
             }
 
-            for (int i = 0; i < 30; i++) {
+            for (int i = 0; i < 29; i++) {
                 sum = 0;
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
@@ -424,13 +424,13 @@ public class Test {
             writer.writeNext(prefix);
 
             //INFO: Warm up
-            for (int i = 0; i < 34; i++) {
+            for (int i = 0; i < 32; i++) {
                 System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.radixsort(field);
             }
 
-            for (int i = 0; i < 34; i++) {
+            for (int i = 0; i < 32; i++) {
                 sum = 0;
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
