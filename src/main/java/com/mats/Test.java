@@ -7,6 +7,9 @@ import java.util.Random;
 
 public class Test {
 
+    private static final int NUMBER_RANGE = 1000;
+    private static final int SAMPLES = 10;
+
     private Timer timer;
     private final Random random = new Random();
     private CSVWriter writer;
@@ -19,19 +22,60 @@ public class Test {
     }
 
     public void bubbleSortBenchmark() throws IOException {
-        writer = new CSVWriter(new FileWriter("bubble.csv"));
-        for (int i = 10; i < 100; i++) {
-            String[] data = { String.valueOf(i) };
-            System.out.println(i);
-            for (int i0 = 10; i0 < 10000; i0 += 10) {
-                createArray(i0, i);
+        writer = new CSVWriter(new FileWriter("bubble_smallscale.csv"));
+        double sum = 0;
+
+        String[] data = { String.valueOf(NUMBER_RANGE) };
+
+        //INFO: Warm up
+        for (int i = 0; i < SAMPLES; i++) {
+            createArray(i, NUMBER_RANGE);
+            Algorithms.bubbleSort(field);
+        }
+
+        for (int i = 5; i < 100; i += 5) {
+            for (int i0 = 0; i0 < SAMPLES; i0++) {
+                createArray(i, NUMBER_RANGE);
+
                 timer.start();
                 Algorithms.bubbleSort(field);
-                data = append(data, String.format("%.10f", timer.stop()));
+
+                sum += timer.stop();
+
                 if (!isFieldSorted()) break;
             }
-            writer.writeNext(data);
+            sum /= SAMPLES;
+            data = append(data, String.format("%.10f", sum));
         }
+        writer.writeNext(data);
+        writer.close();
+        //-------------------------------------------------------------------------
+        writer = new CSVWriter(new FileWriter("bubble_smallscale.csv"));
+        sum = 0;
+
+        data = new String[] { String.valueOf(NUMBER_RANGE) };
+
+        //INFO: Warm up
+        for (int i = 0; i < SAMPLES; i++) {
+            createArray(i, NUMBER_RANGE);
+            Algorithms.bubbleSort(field);
+        }
+
+        for (int i = 5; i < 100; i += 5) {
+            for (int i0 = 0; i0 < SAMPLES; i0++) {
+                createArray(i, NUMBER_RANGE);
+
+                timer.start();
+                Algorithms.bubbleSort(field);
+
+                sum += timer.stop();
+
+                if (!isFieldSorted()) break;
+            }
+            sum /= SAMPLES;
+            data = append(data, String.format("%.10f", sum));
+        }
+        writer.writeNext(data);
         writer.close();
     }
 
