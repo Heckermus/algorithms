@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class Test {
 
-    private static final int NUMBER_RANGE = 1000000;
-    private static final int SAMPLES = 10;
+    private static final int NUMBER_RANGE = 100;
+    private static final int SAMPLES = 20;
     private static final int[] SIZES = {
         10,
         20,
@@ -65,7 +65,6 @@ public class Test {
 
             //INFO: Warm up
             for (int i = 0; i < 20; i++) {
-                System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.bubbleSort(field);
             }
@@ -75,19 +74,18 @@ public class Test {
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
                 for (int i0 = 0; i0 < SAMPLES; i0++) {
-                    System.out.println();
                     runs += 1;
 
-                    System.out.println("Creating Array: " + SIZES[i] + " Sample: " + i0);
                     createArray(SIZES[i], NUMBER_RANGE);
 
-                    System.out.println("Sorting: " + SIZES[i] + " Sample: " + i0);
                     timer.start();
                     Algorithms.bubbleSort(field);
                     sum += timer.stop();
 
-                    if (!isFieldSorted()) break;
-                    System.out.println("Sorting complete " + SIZES[i] + " Sample: " + i0);
+                    if (!isFieldSorted()) {
+                        System.err.println("SORTING FAILED");
+                        break;
+                    }
                 }
                 sum /= runs;
                 data = append(data, String.format("%.6f", sum));
@@ -110,7 +108,6 @@ public class Test {
 
             //INFO: Warm up
             for (int i = 0; i < 22; i++) {
-                System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.selectionSort(field);
             }
@@ -120,19 +117,18 @@ public class Test {
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
                 for (int i0 = 0; i0 < SAMPLES; i0++) {
-                    System.out.println();
                     runs += 1;
 
-                    System.out.println("Creating Array: " + SIZES[i] + " Sample: " + i0);
                     createArray(SIZES[i], NUMBER_RANGE);
 
-                    System.out.println("Sorting: " + SIZES[i] + " Sample: " + i0);
                     timer.start();
                     Algorithms.selectionSort(field);
                     sum += timer.stop();
 
-                    if (!isFieldSorted()) break;
-                    System.out.println("Sorting complete " + SIZES[i] + " Sample: " + i0);
+                    if (!isFieldSorted()) {
+                        System.err.println("Sorting Failed");
+                        break;
+                    }
                 }
                 sum /= runs;
                 data = append(data, String.format("%.6f", sum));
@@ -155,7 +151,6 @@ public class Test {
 
             //INFO: Warm up
             for (int i = 0; i < 23; i++) {
-                System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.insertionSort(field);
             }
@@ -165,19 +160,18 @@ public class Test {
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
                 for (int i0 = 0; i0 < SAMPLES; i0++) {
-                    System.out.println();
                     runs += 1;
 
-                    System.out.println("Creating Array: " + SIZES[i] + " Sample: " + i0);
                     createArray(SIZES[i], NUMBER_RANGE);
 
-                    System.out.println("Sorting: " + SIZES[i] + " Sample: " + i0);
                     timer.start();
                     Algorithms.insertionSort(field);
                     sum += timer.stop();
 
-                    if (!isFieldSorted()) break;
-                    System.out.println("Sorting complete " + SIZES[i] + " Sample: " + i0);
+                    if (!isFieldSorted()) {
+                        System.err.println("Sorting Failed");
+                        break;
+                    }
                 }
                 sum /= runs;
                 data = append(data, String.format("%.6f", sum));
@@ -199,8 +193,7 @@ public class Test {
             writer.writeNext(prefix);
 
             //INFO: Warm up
-            for (int i = 0; i < 31; i++) {
-                System.out.println("Warming up: " + SIZES[i]);
+            for (int i = 0; i < 32; i++) {
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.mergeSort(field);
             }
@@ -210,19 +203,18 @@ public class Test {
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
                 for (int i0 = 0; i0 < SAMPLES; i0++) {
-                    System.out.println();
                     runs += 1;
 
-                    System.out.println("Creating Array: " + SIZES[i] + " Sample: " + i0);
                     createArray(SIZES[i], NUMBER_RANGE);
 
-                    System.out.println("Sorting: " + SIZES[i] + " Sample: " + i0);
                     timer.start();
                     Algorithms.mergeSort(field);
                     sum += timer.stop();
 
-                    if (!isFieldSorted()) break;
-                    System.out.println("Sorting complete " + SIZES[i] + " Sample: " + i0);
+                    if (!isFieldSorted()) {
+                        System.err.println("Sorting Failed");
+                        break;
+                    }
                 }
                 sum /= runs;
                 data = append(data, String.format("%.6f", sum));
@@ -245,7 +237,6 @@ public class Test {
 
             //INFO: Warm up
             for (int i = 0; i < 31; i++) {
-                System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.quickSort(field);
             }
@@ -255,19 +246,18 @@ public class Test {
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
                 for (int i0 = 0; i0 < SAMPLES; i0++) {
-                    System.out.println();
                     runs += 1;
 
-                    System.out.println("Creating Array: " + SIZES[i] + " Sample: " + i0);
                     createArray(SIZES[i], NUMBER_RANGE);
 
-                    System.out.println("Sorting: " + SIZES[i] + " Sample: " + i0);
                     timer.start();
                     Algorithms.quickSort(field);
                     sum += timer.stop();
 
-                    if (!isFieldSorted()) break;
-                    System.out.println("Sorting complete " + SIZES[i] + " Sample: " + i0);
+                    if (!isFieldSorted()) {
+                        System.err.println("Sorting Failed");
+                        break;
+                    }
                 }
                 sum /= runs;
                 data = append(data, String.format("%.6f", sum));
@@ -290,7 +280,6 @@ public class Test {
 
             //INFO: Warm up
             for (int i = 0; i < 36; i++) {
-                System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.countSort(field);
             }
@@ -300,19 +289,18 @@ public class Test {
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
                 for (int i0 = 0; i0 < SAMPLES; i0++) {
-                    System.out.println();
                     runs += 1;
 
-                    System.out.println("Creating Array: " + SIZES[i] + " Sample: " + i0);
                     createArray(SIZES[i], NUMBER_RANGE);
 
-                    System.out.println("Sorting: " + SIZES[i] + " Sample: " + i0);
                     timer.start();
                     Algorithms.countSort(field);
                     sum += timer.stop();
 
-                    if (!isFieldSorted()) break;
-                    System.out.println("Sorting complete " + SIZES[i] + " Sample: " + i0);
+                    if (!isFieldSorted()) {
+                        System.err.println("Sorting Failed");
+                        break;
+                    }
                 }
                 sum /= runs;
                 data = append(data, String.format("%.6f", sum));
@@ -335,7 +323,6 @@ public class Test {
 
             //INFO: Warm up
             for (int i = 0; i < 31; i++) {
-                System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.shellSort(field);
             }
@@ -345,19 +332,18 @@ public class Test {
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
                 for (int i0 = 0; i0 < SAMPLES; i0++) {
-                    System.out.println();
                     runs += 1;
 
-                    System.out.println("Creating Array: " + SIZES[i] + " Sample: " + i0);
                     createArray(SIZES[i], NUMBER_RANGE);
 
-                    System.out.println("Sorting: " + SIZES[i] + " Sample: " + i0);
                     timer.start();
                     Algorithms.shellSort(field);
                     sum += timer.stop();
 
-                    if (!isFieldSorted()) break;
-                    System.out.println("Sorting complete " + SIZES[i] + " Sample: " + i0);
+                    if (!isFieldSorted()) {
+                        System.err.println("Sorting Failed");
+                        break;
+                    }
                 }
                 sum /= runs;
                 data = append(data, String.format("%.6f", sum));
@@ -380,7 +366,6 @@ public class Test {
 
             //INFO: Warm up
             for (int i = 0; i < 30; i++) {
-                System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.heapSort(field);
             }
@@ -390,19 +375,18 @@ public class Test {
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
                 for (int i0 = 0; i0 < SAMPLES; i0++) {
-                    System.out.println();
                     runs += 1;
 
-                    System.out.println("Creating Array: " + SIZES[i] + " Sample: " + i0);
                     createArray(SIZES[i], NUMBER_RANGE);
 
-                    System.out.println("Sorting: " + SIZES[i] + " Sample: " + i0);
                     timer.start();
                     Algorithms.heapSort(field);
                     sum += timer.stop();
 
-                    if (!isFieldSorted()) break;
-                    System.out.println("Sorting complete " + SIZES[i] + " Sample: " + i0);
+                    if (!isFieldSorted()) {
+                        System.err.println("Sorting Failed");
+                        break;
+                    }
                 }
                 sum /= runs;
                 data = append(data, String.format("%.6f", sum));
@@ -425,7 +409,6 @@ public class Test {
 
             //INFO: Warm up
             for (int i = 0; i < 32; i++) {
-                System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.radixsort(field);
             }
@@ -435,19 +418,18 @@ public class Test {
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
                 for (int i0 = 0; i0 < SAMPLES; i0++) {
-                    System.out.println();
                     runs += 1;
 
-                    System.out.println("Creating Array: " + SIZES[i] + " Sample: " + i0);
                     createArray(SIZES[i], NUMBER_RANGE);
 
-                    System.out.println("Sorting: " + SIZES[i] + " Sample: " + i0);
                     timer.start();
                     Algorithms.radixsort(field);
                     sum += timer.stop();
 
-                    if (!isFieldSorted()) break;
-                    System.out.println("Sorting complete " + SIZES[i] + " Sample: " + i0);
+                    if (!isFieldSorted()) {
+                        System.err.println("Sorting Failed");
+                        break;
+                    }
                 }
                 sum /= runs;
                 data = append(data, String.format("%.6f", sum));

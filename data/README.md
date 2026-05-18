@@ -1,0 +1,1 @@
+This data was is from an Intel Core I5 12600KF
