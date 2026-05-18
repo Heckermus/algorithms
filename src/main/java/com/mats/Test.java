@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class Test {
 
-    private static final int NUMBER_RANGE = 1000;
+    private static final int NUMBER_RANGE = 1000000;
     private static final int SAMPLES = 10;
     private static final int[] SIZES = {
         10,
@@ -56,7 +56,7 @@ public class Test {
 
     public void bubbleSortBenchmark() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("bubble.csv"));
+            CSVWriter writer = new CSVWriter(new FileWriter("bubble" + NUMBER_RANGE + ".csv"));
             double sum = 0;
             int runs = 0;
 
@@ -101,7 +101,7 @@ public class Test {
 
     public void selectionSortBenchmark() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("selection.csv"));
+            CSVWriter writer = new CSVWriter(new FileWriter("selection" + NUMBER_RANGE + ".csv"));
             double sum = 0;
             int runs = 0;
 
@@ -146,7 +146,7 @@ public class Test {
 
     public void insertionSortBenchmark() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("insertion.csv"));
+            CSVWriter writer = new CSVWriter(new FileWriter("insertion" + NUMBER_RANGE + ".csv"));
             double sum = 0;
             int runs = 0;
 
@@ -191,7 +191,7 @@ public class Test {
 
     public void mergesortBenchmark() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("merge.csv"));
+            CSVWriter writer = new CSVWriter(new FileWriter("merge" + NUMBER_RANGE + ".csv"));
             double sum = 0;
             int runs = 0;
 
@@ -199,13 +199,13 @@ public class Test {
             writer.writeNext(prefix);
 
             //INFO: Warm up
-            for (int i = 0; i < 36; i++) {
+            for (int i = 0; i < 31; i++) {
                 System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.mergeSort(field);
             }
 
-            for (int i = 0; i < 36; i++) {
+            for (int i = 0; i < 32; i++) {
                 sum = 0;
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
@@ -236,7 +236,7 @@ public class Test {
 
     public void quicksortBenchmark() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("quick.csv"));
+            CSVWriter writer = new CSVWriter(new FileWriter("quick" + NUMBER_RANGE + ".csv"));
             double sum = 0;
             int runs = 0;
 
@@ -281,7 +281,7 @@ public class Test {
 
     public void countsortBenchmark() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("count.csv"));
+            CSVWriter writer = new CSVWriter(new FileWriter("count" + NUMBER_RANGE + ".csv"));
             double sum = 0;
             int runs = 0;
 
@@ -326,7 +326,7 @@ public class Test {
 
     public void shellsortBenchmark() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("shell.csv"));
+            CSVWriter writer = new CSVWriter(new FileWriter("shell" + NUMBER_RANGE + ".csv"));
             double sum = 0;
             int runs = 0;
 
@@ -371,7 +371,7 @@ public class Test {
 
     public void heapsortBenchmark() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("heap.csv"));
+            CSVWriter writer = new CSVWriter(new FileWriter("heap" + NUMBER_RANGE + ".csv"));
             double sum = 0;
             int runs = 0;
 
@@ -379,13 +379,13 @@ public class Test {
             writer.writeNext(prefix);
 
             //INFO: Warm up
-            for (int i = 0; i < 29; i++) {
+            for (int i = 0; i < 30; i++) {
                 System.out.println("Warming up: " + SIZES[i]);
                 createArray(SIZES[i], NUMBER_RANGE);
                 Algorithms.heapSort(field);
             }
 
-            for (int i = 0; i < 29; i++) {
+            for (int i = 0; i < 30; i++) {
                 sum = 0;
                 runs = 0;
                 String[] data = { String.valueOf(SIZES[i]) };
@@ -416,7 +416,7 @@ public class Test {
 
     public void radixsortBenchmark() {
         try {
-            CSVWriter writer = new CSVWriter(new FileWriter("radix.csv"));
+            CSVWriter writer = new CSVWriter(new FileWriter("radix" + NUMBER_RANGE + ".csv"));
             double sum = 0;
             int runs = 0;
 
